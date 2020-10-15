@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ffc546af-3664-4bf9-9692-f1b7f16b673f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.env.test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.php_cs.dist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/bin/console" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/bin/phpunit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/bundles.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/api_platform.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/cache.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/dev/debug.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/dev/monolog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/dev/routing.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/dev/web_profiler.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/doctrine.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/doctrine_migrations.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/framework.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/mercure.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/nelmio_cors.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/prod/api_platform.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/prod/deprecations.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/prod/doctrine.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/prod/monolog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/prod/routing.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/routing.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/security.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/framework.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/monolog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/routing.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/twig.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/validator.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/test/web_profiler.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/twig.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/packages/validator.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes/annotations.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes/api_platform.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes/dev/framework.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes/dev/twig.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/routes/dev/web_profiler.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/services.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/php/conf.d/api-platform.dev.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/php/conf.d/api-platform.prod.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/php/docker-entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/php/docker-healthcheck.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/varnish/conf/default.tmpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/docker/varnish/docker-entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/.helmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/nginx-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/nginx-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/php-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/php-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/secrets.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/serviceaccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/tests/test-connection.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/varnish-deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/templates/varnish-service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/helm/api/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/Version20200828181711.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/phpunit.xml.dist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/public/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Controller/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Entity/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Entity/Greeting.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Kernel.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Repository/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/symfony.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/templates/base.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tests/bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Welcome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Welcome.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/config/entrypoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/welcome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/dev-tls/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/update-deps.sh" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/capitrain-api/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ix0LAS9rOFaCZcGu264N1QJAhd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../projets/iloh/iloh_api" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ffc546af-3664-4bf9-9692-f1b7f16b673f" name="Default Changelist" comment="" />
+      <created>1602833876956</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602833876956</updated>
+      <workItem from="1602833878213" duration="544000" />
+      <workItem from="1602834538320" duration="2501000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1602835519310">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602835519310" />
+    <state x="48" y="189" key="run.anything.popup" timestamp="1602835285873">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="48" y="189" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1602835285873" />
+    <state x="47" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1602835748512">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="47" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1602835748512" />
+  </component>
+</project>
