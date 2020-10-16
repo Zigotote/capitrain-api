@@ -25,14 +25,16 @@ class PacketPassage
     private $indice;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Traceroute::class, inversedBy="packetPassages")
-     */
-    private $traceroute;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Ip::class, inversedBy="packetPassages")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $ip;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Traceroute::class, inversedBy="packetPassages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $traceroute;
 
     public function getId(): ?int
     {
@@ -51,18 +53,6 @@ class PacketPassage
         return $this;
     }
 
-    public function getTraceroute(): ?Traceroute
-    {
-        return $this->traceroute;
-    }
-
-    public function setTraceroute(?Traceroute $traceroute): self
-    {
-        $this->traceroute = $traceroute;
-
-        return $this;
-    }
-
     public function getIp(): ?Ip
     {
         return $this->ip;
@@ -71,6 +61,18 @@ class PacketPassage
     public function setIp(?Ip $ip): self
     {
         $this->ip = $ip;
+
+        return $this;
+    }
+
+    public function getTraceroute(): ?Traceroute
+    {
+        return $this->traceroute;
+    }
+
+    public function setTraceroute(?Traceroute $traceroute): self
+    {
+        $this->traceroute = $traceroute;
 
         return $this;
     }

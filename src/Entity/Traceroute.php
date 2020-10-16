@@ -27,7 +27,7 @@ class Traceroute
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="traceroute")
+     * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="traceroute", orphanRemoval=true)
      */
     private $packetPassages;
 

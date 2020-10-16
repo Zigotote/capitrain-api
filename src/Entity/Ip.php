@@ -16,9 +16,15 @@ class Ip
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isShared;
 
     /**
      * @ORM\OneToOne(targetEntity=Position::class, cascade={"persist", "remove"})
@@ -26,12 +32,12 @@ class Ip
     private $position;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=30)
      */
-    private $shared;
+    private $ip;
 
     /**
-     * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="ip")
+     * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="ip", orphanRemoval=true)
      */
     private $packetPassages;
 
@@ -40,9 +46,21 @@ class Ip
         $this->packetPassages = new ArrayCollection();
     }
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIsShared(): ?bool
+    {
+        return $this->isShared;
+    }
+
+    public function setIsShared(bool $isShared): self
+    {
+        $this->isShared = $isShared;
+
+        return $this;
     }
 
     public function getPosition(): ?Position
@@ -57,14 +75,14 @@ class Ip
         return $this;
     }
 
-    public function getShared(): ?bool
+    public function getIp(): ?string
     {
-        return $this->shared;
+        return $this->ip;
     }
 
-    public function setShared(bool $shared): self
+    public function setIp(string $ip): self
     {
-        $this->shared = $shared;
+        $this->ip = $ip;
 
         return $this;
     }
