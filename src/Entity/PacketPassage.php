@@ -7,7 +7,16 @@ use App\Repository\PacketPassageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={
+ *     	"get",
+ *     	"create"={
+ *              "method"="POST",
+ *              "path"="/packet_passages/create",
+ *              "controller"=App\Controller\CreatePacketPassage::class,
+ *              "defaults"={"_api_receive"=false}
+ *      },
+ * })
  * @ORM\Entity(repositoryClass=PacketPassageRepository::class)
  */
 class PacketPassage

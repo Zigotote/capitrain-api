@@ -6,11 +6,8 @@ namespace App\Controller;
 use App\Entity\Ip;
 use App\Entity\PacketPassage;
 use App\Entity\Position;
-use App\Repository\IpRepository;
-use App\Repository\TracerouteRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,23 +21,22 @@ class CreatePacketPassage extends AbstractController
 	 * @param Request $request
 	 * @return JsonResponse|PacketPassage
 	 *
-	 * @Route(
-	 *     name="packet_passage_add",
-	 *     path="/PacketPassage/add",
-	 *     methods={"POST"},
-	 *     defaults={
-	 *         "_api_resource_class"=PacketPassage::class,
-	 *         "_api_item_operation_name"="add"
-	 *     }
-	 * )
 	 */
 	public function __invoke(Request $request): PacketPassage
 	{
 		$data = json_decode($request->getContent(), true);
-		$ipValue = $data['ip'];
-		$indice = $data['indice'];
-		$traceRouteId = $data['traceroute'];
-		$positionData = $data['position'];
+		if(array_key_exists('ip', $data)) {
+			$ipValue = $data['ip'];
+		}
+		if(array_key_exists('indice', $data)) {
+			$indice = $data['indice'];
+		}
+		if(array_key_exists('traceroute', $data)) {
+			$traceRouteId = $data['traceroute'];
+		}
+		if(array_key_exists('position', $data)) {
+			$positionData = $data['position'];
+		}
 
 		// Verify request validity
 		if(empty($ipValue)) {
@@ -49,19 +45,21 @@ class CreatePacketPassage extends AbstractController
 		if(is_null($traceRouteId)) {
 			return new JsonResponse(array('error' => 'traceRoute_required'), Response::HTTP_BAD_REQUEST);
 		}
-		$traceRoute = (new TracerouteRepository)->findOneBy(['id' => $traceRouteId]);
+		$traceRoute = $this->getDoctrine()->getRepository('App:Traceroute')->findOneBy(['id' => $traceRouteId]);
 		if (is_null($traceRoute)) {
 			return new JsonResponse(array('error' => 'traceRoute_unknown'), Response::HTTP_BAD_REQUEST);
 		}
 
 		// Update and create elements
-		$ip = (new IpRepository)->findOneBy(['id' => $ipValue]);
+		$ip = $this->getDoctrine()->getRepository('App:Ip')->findOneBy(['ip' => $ipValue]);
 		if(is_null($ip)) {
-			$ip = new Ip($ipValue);
+			$ip = new Ip();
+			$ip->setIp($ipValue);
+			$ip->setIsShared(false);
 			$this->getDoctrine()->getManager()->persist($ip);
 		}
 
-		if (is_null($ip->getPosition())) {
+		if (!empty($positionData) && is_null($ip->getPosition())) {
 			$longitude = $positionData['logitude'];
 			$latitude = $positionData['latitude'];
 			if (is_null($longitude) || is_null($latitude))
@@ -69,7 +67,6 @@ class CreatePacketPassage extends AbstractController
 				$position = new Position();
 				$position->setLatitude($latitude);
 				$position->setLongitude($longitude);
-				$position->setIp($ip);
 				$this->getDoctrine()->getManager()->persist($position);
 			}
 		}
