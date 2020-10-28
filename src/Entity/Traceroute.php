@@ -7,9 +7,23 @@ use App\Repository\TracerouteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get-traceroute"}},
+ *     collectionOperations={
+ *         "get"={
+ *               "normalization_context"={"groups"={"get-traceroute"}}
+ *         },
+ *     	   "post"
+ *     },
+ *     itemOperations={
+ *     	   "get"={
+ *               "normalization_context"={"groups"={"get-traceroute"}}
+ *         },
+ *	   }
+ * )
  * @ORM\Entity(repositoryClass=TracerouteRepository::class)
  */
 class Traceroute
@@ -18,6 +32,7 @@ class Traceroute
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+	 * @Groups({"get-traceroute"})
      */
     private $id;
 
@@ -28,7 +43,8 @@ class Traceroute
 
     /**
      * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="traceroute", orphanRemoval=true)
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $packetPassages;
 
     public function __construct()

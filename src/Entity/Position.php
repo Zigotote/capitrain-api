@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PositionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -16,17 +17,20 @@ class Position
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $id;
 
     /**
      * @ORM\Column(type="float")
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $longitude;
 
     /**
      * @ORM\Column(type="float")
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $latitude;
 
     public function getId(): ?int

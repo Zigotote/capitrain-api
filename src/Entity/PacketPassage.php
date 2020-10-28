@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PacketPassageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -25,18 +26,21 @@ class PacketPassage
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $indice;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ip::class, inversedBy="packetPassages")
      * @ORM\JoinColumn(nullable=false)
-     */
+	 * @Groups({"get-traceroute"})
+	 */
     private $ip;
 
     /**

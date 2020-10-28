@@ -26,7 +26,7 @@ class Ip
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-	 * @Groups({"get-ip"})
+	 * @Groups({"get-ip", "get-traceroute"})
 	 */
     private $id;
 
@@ -38,13 +38,13 @@ class Ip
 
     /**
      * @ORM\OneToOne(targetEntity=Position::class, cascade={"persist", "remove"})
-	 * @Groups({"get-ip"})
+	 * @Groups({"get-ip", "get-traceroute"})
 	 */
     private $position;
 
     /**
      * @ORM\Column(type="string", length=30)
-	 * @Groups({"get-ip"})
+	 * @Groups({"get-ip", "get-traceroute"})
 	 */
     private $ip;
 
