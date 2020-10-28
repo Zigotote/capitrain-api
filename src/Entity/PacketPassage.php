@@ -11,13 +11,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     itemOperations={
  *     	"get",
- *     	"create"={
+ * 	   },
+ *     collectionOperations={
+ *     "post"={
  *              "method"="POST",
- *              "path"="/packet_passages/create",
+ *              "path"="/packet_passages/",
  *              "controller"=App\Controller\CreatePacketPassage::class,
  *              "defaults"={"_api_receive"=false}
  *      },
- * })
+ *	  }
+ * )
  * @ORM\Entity(repositoryClass=PacketPassageRepository::class)
  */
 class PacketPassage
