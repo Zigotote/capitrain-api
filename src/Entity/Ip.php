@@ -7,9 +7,17 @@ use App\Repository\IpRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get-ip"}},
+ *     collectionOperations={
+ *         "get"={
+ *               "normalization_context"={"groups"={"get-ip"}}
+ *         },
+ *     },
+ * )
  * @ORM\Entity(repositoryClass=IpRepository::class)
  */
 class Ip
@@ -18,22 +26,26 @@ class Ip
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     */
+	 * @Groups({"get-ip"})
+	 */
     private $id;
 
     /**
      * @ORM\Column(type="boolean")
-     */
+	 * @Groups({"get-ip"})
+	 */
     private $isShared;
 
     /**
      * @ORM\OneToOne(targetEntity=Position::class, cascade={"persist", "remove"})
-     */
+	 * @Groups({"get-ip"})
+	 */
     private $position;
 
     /**
      * @ORM\Column(type="string", length=30)
-     */
+	 * @Groups({"get-ip"})
+	 */
     private $ip;
 
     /**
