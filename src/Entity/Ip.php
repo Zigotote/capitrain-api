@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *         "get"={
  *               "normalization_context"={"groups"={"get-ip"}}
  *         },
+ *        "post",
  *     },
  * )
  * @ORM\Entity(repositoryClass=IpRepository::class)
