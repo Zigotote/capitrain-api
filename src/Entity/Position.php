@@ -8,7 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *        "getAllNodeUse" = {
+ *  	        "method"="GET",
+ *     			"path"="positions/all_node_use",
+ *              "controller"=App\Controller\GetAllNodeUse::class,
+ *              "defaults"={"_api_receive"=false}
+ *	      },
+ *     },
+ * )
  * @ORM\Entity(repositoryClass=PositionRepository::class)
  */
 class Position

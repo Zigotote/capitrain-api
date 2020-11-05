@@ -19,6 +19,20 @@ class PacketPassageRepository extends ServiceEntityRepository
         parent::__construct($registry, PacketPassage::class);
     }
 
+    public function findAllOrderByPosition() {
+		return $this
+			->createQueryBuilder('pp')
+			->select("pos.country")
+			->addSelect("pos.city")
+			->join('pp.ip', 'ip')
+			->join('ip.position', 'pos')
+			->where('ip.position IS NOT NULL')
+			->addOrderBy('pos.country', 'ASC')
+			->addOrderBy('pos.city', 'ASC')
+			->getQuery()
+			->getResult();
+	}
+
     // /**
     //  * @return PacketPassage[] Returns an array of PacketPassage objects
     //  */
