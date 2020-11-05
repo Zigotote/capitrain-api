@@ -13,12 +13,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     	"get",
  * 	   },
  *     collectionOperations={
- *     "post"={
+ *     	"post"={
  *              "method"="POST",
  *              "controller"=App\Controller\CreatePacketPassage::class,
  *              "defaults"={"_api_receive"=false}
  *      },
- *	  }
+ *     	"get",
+ *	   }
  * )
  * @ORM\Entity(repositoryClass=PacketPassageRepository::class)
  */
