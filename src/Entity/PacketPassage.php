@@ -15,7 +15,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     collectionOperations={
  *     "post"={
  *              "method"="POST",
- *              "path"="/packet_passages/",
  *              "controller"=App\Controller\CreatePacketPassage::class,
  *              "defaults"={"_api_receive"=false}
  *      },

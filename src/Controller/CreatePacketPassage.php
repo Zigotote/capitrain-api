@@ -1,5 +1,5 @@
 <?php
-// api/src/Controller/CreatePacketPassagePublication.php
+// api/src/Controller/CreatePacketPassage.php
 
 namespace App\Controller;
 
@@ -17,7 +17,6 @@ class CreatePacketPassage extends AbstractController
 	{}
 
 	/**
-	 *
 	 * @param Request $request
 	 * @return JsonResponse|PacketPassage
 	 *
@@ -25,6 +24,7 @@ class CreatePacketPassage extends AbstractController
 	public function __invoke(Request $request): PacketPassage
 	{
 		$data = json_decode($request->getContent(), true);
+		$positionData = null;
 		if(array_key_exists('ip', $data)) {
 			$ipValue = $data['ip'];
 		}
@@ -57,18 +57,10 @@ class CreatePacketPassage extends AbstractController
 			$ip->setIp($ipValue);
 			$ip->setIsShared(false);
 			$this->getDoctrine()->getManager()->persist($ip);
-		}
 
-		if (!empty($positionData) && is_null($ip->getPosition())) {
-			$longitude = $positionData['logitude'];
-			$latitude = $positionData['latitude'];
-			if (is_null($longitude) || is_null($latitude))
-			{
-				$position = new Position();
-				$position->setLatitude($latitude);
-				$position->setLongitude($longitude);
-				$this->getDoctrine()->getManager()->persist($position);
-			}
+			// Upd position
+			$this->updPosition($positionData,
+							   $ip);
 		}
 
 		$packetPassage = new PacketPassage();
@@ -80,5 +72,55 @@ class CreatePacketPassage extends AbstractController
 		$this->getDoctrine()->getManager()->flush();
 
 		return $packetPassage;
+	}
+
+	/**
+	 * @param $positionData
+	 * @param $ipValue
+	 */
+	private function updPosition($positionData, Ip $ip)
+	{
+		if (!empty($positionData))
+		{
+			$longitude = $positionData['longitude'];
+			$latitude  = $positionData['latitude'];
+			$country  = $positionData['country'];
+			$city  = $positionData['city'];
+			if (!is_null($longitude)
+				&& !is_null($latitude)
+				&& !is_null($city)
+				&& !is_null($country))
+			{
+				$position = new Position();
+				$position->setLatitude($latitude);
+				$position->setLongitude($longitude);
+				$position->setCountry($positionData['country']);
+				$position->setCity($positionData['city']);
+
+				$this->getDoctrine()
+					 ->getManager()
+					 ->persist($position);
+			}
+			else
+			{
+				$position = $this->getDoctrine()
+					 ->getRepository('App:Position')
+					 ->initPositionFormWhoIsAPI($ip->getIp());
+
+			}
+		}
+		else
+		{
+			$position = $this->getDoctrine()
+				 ->getRepository('App:Position')
+				 ->initPositionFormWhoIsAPI($ip->getIp());
+		}
+
+		if (!is_null($position))
+		{
+			$ip->setPosition($position);
+			$this->getDoctrine()->getManager()->persist($ip);
+			$this->getDoctrine()->getManager()->flush();
+		}
 	}
 }
