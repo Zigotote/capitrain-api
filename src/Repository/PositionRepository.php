@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Position;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Exception;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -58,6 +57,19 @@ class PositionRepository extends ServiceEntityRepository
 		} else {
 			return null;
 		}
+	}
+
+	public function getAllCities() {
+		return $this
+			->createQueryBuilder('pos')
+			->select("pos.country")
+			->addSelect("pos.city")
+			->orderBy("pos.country", 'ASC')
+			->addOrderBy("pos.city", 'ASC')
+			->groupBy("pos.country")
+			->addGroupBy("pos.city")
+			->getQuery()
+			->getResult();
 	}
 
 	/**

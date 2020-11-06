@@ -16,6 +16,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "controller"=App\Controller\GetAllNodeUse::class,
  *              "defaults"={"_api_receive"=false}
  *	      },
+ *       "getCities" = {
+ *  	        "method"="GET",
+ *     			"path"="positions/cities",
+ *              "controller"=App\Controller\GetCities::class,
+ *              "defaults"={"_api_receive"=false}
+ *	      },
  *     },
  * )
  * @ORM\Entity(repositoryClass=PositionRepository::class)
