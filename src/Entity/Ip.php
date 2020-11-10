@@ -54,6 +54,12 @@ class Ip
     private $ip;
 
     /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+	 * @Groups({"get-ip", "get-traceroute"})
+	 */
+    private $isp;
+
+    /**
      * @ORM\OneToMany(targetEntity=PacketPassage::class, mappedBy="ip", orphanRemoval=true)
      */
     private $packetPassages;
@@ -100,6 +106,18 @@ class Ip
     public function setIp(string $ip): self
     {
         $this->ip = $ip;
+
+        return $this;
+    }
+
+    public function getIsp(): ?string
+    {
+        return $this->isp;
+    }
+
+    public function setIsp(string $isp): self
+    {
+        $this->isp = $isp;
 
         return $this;
     }

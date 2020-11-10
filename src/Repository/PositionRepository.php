@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Ip;
 use App\Entity\Position;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -23,10 +24,10 @@ class PositionRepository extends ServiceEntityRepository
 		$this->client = $client;
     }
 
-    public function initPositionFormWhoIsAPI(string $ip) {
+    public function initPositionFormWhoIsAPI(Ip $ip) {
 		$response = $this->client->request(
 			'GET',
-			'http://ipwhois.app/json/'.$ip.'?objects=success,country,city,latitude,longitude'
+			'http://ipwhois.app/json/'.$ip->getIp().'?objects=success,country,city,latitude,longitude,isp'
 		);
 		$content = json_decode($response->getContent(), true);
 		if($this->noPositionFound($content)) {
@@ -37,6 +38,14 @@ class PositionRepository extends ServiceEntityRepository
 		$latitude  = $content['latitude'];
 		$country  = $content['country'];
 		$city  = $content['city'];
+		$isp  = $content['isp'];
+
+		if(!is_null($isp)) {
+			$ip->setIsp($isp);
+			$this->getEntityManager()
+				 ->persist($ip);
+		}
+
 		if (!is_null($longitude)
 			&& !is_null($latitude)
 			&& !is_null($city)
