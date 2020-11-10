@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Ip;
 use App\Entity\PacketPassage;
 use App\Entity\Position;
+use App\Entity\Traceroute;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +18,9 @@ class CreatePacketPassage extends AbstractController
 	{}
 
 	/**
+	 *
 	 * @param Request $request
 	 * @return JsonResponse|PacketPassage
-	 *
 	 */
 	public function __invoke(Request $request): PacketPassage
 	{
@@ -67,6 +68,12 @@ class CreatePacketPassage extends AbstractController
 		$packetPassage->setIp($ip);
 		$packetPassage->setIndice($indice);
 		$packetPassage->setTraceRoute($traceRoute);
+		if($indice > 0)
+		{
+			$previousList = $this->getPreviousPacketPassage($traceRoute, $indice);
+			$packetPassage->setPrevious(empty($previousList) ? null : $previousList[0]);
+		}
+
 		$this->getDoctrine()->getManager()->persist($packetPassage);
 
 		$this->getDoctrine()->getManager()->flush();
@@ -75,6 +82,7 @@ class CreatePacketPassage extends AbstractController
 	}
 
 	/**
+	 * Update ip position, (from request data or from whoIs api)
 	 * @param $positionData
 	 * @param $ipValue
 	 */
@@ -113,7 +121,7 @@ class CreatePacketPassage extends AbstractController
 			{
 				$position = $this->getDoctrine()
 					 ->getRepository('App:Position')
-					 ->initPositionFormWhoIsAPI($ip->getIp());
+					 ->initPositionFormWhoIsAPI($ip);
 
 			}
 		}
@@ -121,7 +129,7 @@ class CreatePacketPassage extends AbstractController
 		{
 			$position = $this->getDoctrine()
 				 ->getRepository('App:Position')
-				 ->initPositionFormWhoIsAPI($ip->getIp());
+				 ->initPositionFormWhoIsAPI($ip);
 		}
 
 		if (!is_null($position))
@@ -130,5 +138,18 @@ class CreatePacketPassage extends AbstractController
 			$this->getDoctrine()->getManager()->persist($ip);
 			$this->getDoctrine()->getManager()->flush();
 		}
+	}
+
+	/**
+	 * Get previous packetPassage if exist else return null
+	 * (sometimes packetPassage haven't got previous because of traceroute failure or
+	 *
+	 * @param int $currentIndice
+	 * @param $traceRoute
+	 */
+	private function getPreviousPacketPassage(Traceroute $traceRoute, int $currentIndice)
+	{
+		$filter = ['traceroute' => $traceRoute->getId(), 'indice' => $currentIndice - 1];
+		return $this->getDoctrine()->getRepository('App:PacketPassage')->findBy($filter);
 	}
 }

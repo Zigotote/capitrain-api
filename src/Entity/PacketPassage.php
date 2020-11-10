@@ -52,7 +52,19 @@ class PacketPassage
      */
     private $traceroute;
 
-    public function getId(): ?int
+	/**
+	 * @ORM\OneToOne(targetEntity=PacketPassage::class, inversedBy="previous")
+	 * @ORM\JoinColumn(nullable=true)
+	 */
+	private $next;
+
+	/**
+	 * @ORM\OneToOne(targetEntity=PacketPassage::class, mappedBy="next")
+	 * @ORM\JoinColumn(nullable=true)
+	 */
+	private $previous;
+
+	public function getId(): ?int
     {
         return $this->id;
     }
@@ -92,4 +104,38 @@ class PacketPassage
 
         return $this;
     }
+
+    public function getNext(): ?PacketPassage {
+		return $this->next;
+	}
+
+	public function setNext(?PacketPassage $next): self {
+		if(!is_null($this->next)) {
+			$old = $this->next;
+			$this->next = null;
+			if(is_null($old->getPrevious())) {
+				$old->setPrevious(null);
+			}
+		}
+		$this->next = $next;
+
+		return $this;
+	}
+
+	public function getPrevious(): ?PacketPassage {
+		return $this->previous;
+	}
+
+	public function setPrevious(?PacketPassage $previous): self {
+		if(!is_null($this->previous)) {
+			$old = $this->previous;
+			$this->previous = null;
+			if(is_null($old->getNext())) {
+				$old->setNext(null);
+			}
+		}
+		$this->previous = $previous;
+
+		return $this;
+	}
 }
