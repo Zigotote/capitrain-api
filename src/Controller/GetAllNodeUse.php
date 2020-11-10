@@ -27,6 +27,22 @@ class GetAllNodeUse extends AbstractController
 	}
 
 	/**
+	 * Return city weight in network roots
+	 * 
+	 * @example  :
+	 *           With the next map:
+	 *           	A->B
+	 *           	B->C
+	 *           	D->B
+	 *           	B->A
+	 *
+	 *           The request wil return
+	 *           	{
+	 *           		A: 25%,
+	 *           		B: 50%
+	 *           		C: 12.5%
+	 *           		D: 12.5%
+	 *           	}
 	 * @param Request $request
 	 * @return JsonResponse|PacketPassage
 	 *

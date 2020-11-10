@@ -18,6 +18,26 @@ class CreatePacketPassage extends AbstractController
 	{}
 
 	/**
+	 * Create a new PacketPassage object
+	 *
+	 *@example Request format expected :
+	 *          POST
+	 *          body = {
+	 *          	"position": {
+	 *					"longitude": 42.5,
+	 * 					"latitude" : 51.65,
+	 * 					"country"  : "France",
+	 * 					"city"	   : "Paris",
+	 * 					"isp"	   : "Orange SA"
+	 *				},
+	 * 				"ip"		: "8.8.8.2",
+	 * 				"indice"	: 42,
+	 * 				"traceroute": 1
+	 *          }
+	 *
+	 * "position" attribute is nullable
+	 * "traceroute" attribute have to be an existing Traceroute id
+	 * All attributes required (except "isp")
 	 *
 	 * @param Request $request
 	 * @return JsonResponse|PacketPassage
