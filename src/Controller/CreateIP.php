@@ -34,7 +34,7 @@ class CreateIP extends AbstractController
 				$ip->setIsShared(true);
 				$position = $this->getDoctrine()
 								 ->getRepository("App:Position")
-								 ->initPositionFormWhoIsAPI($ip->getIp());
+								 ->initPositionFormWhoIsAPI($ip);
 				$ip->setPosition($position);
 
 				$this->getDoctrine()
