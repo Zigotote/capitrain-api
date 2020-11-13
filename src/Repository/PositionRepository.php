@@ -27,7 +27,7 @@ class PositionRepository extends ServiceEntityRepository
     public function initPositionFormWhoIsAPI(Ip $ip) {
 		$response = $this->client->request(
 			'GET',
-			'http://ipwhois.app/json/'.$ip->getIp().'?objects=success,country,city,latitude,longitude,isp'
+			'http://ipwhois.app/json/'.$ip->getIp().'?objects=success,country,city,region,latitude,longitude,isp'
 		);
 		$content = json_decode($response->getContent(), true);
 		if($this->noPositionFound($content)) {
@@ -38,6 +38,7 @@ class PositionRepository extends ServiceEntityRepository
 		$latitude  = $content['latitude'];
 		$country  = $content['country'];
 		$city  = $content['city'];
+		$region  = $content['region'];
 		$isp  = $content['isp'];
 
 		if(!is_null($isp)) {
@@ -49,6 +50,7 @@ class PositionRepository extends ServiceEntityRepository
 		if (!is_null($longitude)
 			&& !is_null($latitude)
 			&& !is_null($city)
+			&& !is_null($region)
 			&& !is_null($country))
 		{
 			$position = new Position();
@@ -56,6 +58,7 @@ class PositionRepository extends ServiceEntityRepository
 			$position->setLongitude($longitude);
 			$position->setCountry($content['country']);
 			$position->setCity($content['city']);
+			$position->setRegion($content['region']);
 
 			$this->getEntityManager()
 				 ->persist($position);

@@ -60,6 +60,12 @@ class Position
 	 */
 	private $city;
 
+	/**
+	 * @ORM\Column(type="string")
+	 * @Groups({"get-traceroute"})
+	 */
+	private $region;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +115,18 @@ class Position
 	public function setCity(string $city): self
 	{
 		$this->city = $city;
+
+		return $this;
+	}
+
+	public function getRegion(): ?string
+	{
+		return $this->region;
+	}
+
+	public function setRegion(string $region): self
+	{
+		$this->region = $region;
 
 		return $this;
 	}

@@ -23,19 +23,11 @@ class CreatePacketPassage extends AbstractController
 	 *@example Request format expected :
 	 *          POST
 	 *          body = {
-	 *          	"position": {
-	 *					"longitude": 42.5,
-	 * 					"latitude" : 51.65,
-	 * 					"country"  : "France",
-	 * 					"city"	   : "Paris",
-	 * 					"isp"	   : "Orange SA"
-	 *				},
 	 * 				"ip"		: "8.8.8.2",
 	 * 				"indice"	: 42,
 	 * 				"traceroute": 1
 	 *          }
 	 *
-	 * "position" attribute is nullable
 	 * "traceroute" attribute have to be an existing Traceroute id
 	 * All attributes required (except "isp")
 	 *
@@ -45,7 +37,6 @@ class CreatePacketPassage extends AbstractController
 	public function __invoke(Request $request): PacketPassage
 	{
 		$data = json_decode($request->getContent(), true);
-		$positionData = null;
 		if(array_key_exists('ip', $data)) {
 			$ipValue = $data['ip'];
 		}
@@ -54,9 +45,6 @@ class CreatePacketPassage extends AbstractController
 		}
 		if(array_key_exists('traceroute', $data)) {
 			$traceRouteId = $data['traceroute'];
-		}
-		if(array_key_exists('position', $data)) {
-			$positionData = $data['position'];
 		}
 
 		// Verify request validity
@@ -80,8 +68,15 @@ class CreatePacketPassage extends AbstractController
 			$this->getDoctrine()->getManager()->persist($ip);
 
 			// Upd position
-			$this->updPosition($positionData,
-							   $ip);
+			$position = $this->getDoctrine()
+							 ->getRepository('App:Position')
+							 ->initPositionFormWhoIsAPI($ip);
+
+			if (!is_null($position))
+			{
+				$ip->setPosition($position);
+				$this->getDoctrine()->getManager()->persist($ip);
+			}
 		}
 
 		$packetPassage = new PacketPassage();
@@ -99,65 +94,6 @@ class CreatePacketPassage extends AbstractController
 		$this->getDoctrine()->getManager()->flush();
 
 		return $packetPassage;
-	}
-
-	/**
-	 * Update ip position, (from request data or from whoIs api)
-	 * @param $positionData
-	 * @param $ipValue
-	 */
-	private function updPosition($positionData, Ip $ip)
-	{
-		if (!empty($positionData))
-		{
-			$longitude = $positionData['longitude'];
-			$latitude  = $positionData['latitude'];
-			$country  = $positionData['country'];
-			$city  = $positionData['city'];
-			$isp  = $positionData['isp'];
-
-			if(!is_null($isp)) {
-				$ip->setIsp($isp);
-				$this->getEntityManager()
-					 ->persist($ip);
-			}
-
-			if (!is_null($longitude)
-				&& !is_null($latitude)
-				&& !is_null($city)
-				&& !is_null($country))
-			{
-				$position = new Position();
-				$position->setLatitude($latitude);
-				$position->setLongitude($longitude);
-				$position->setCountry($positionData['country']);
-				$position->setCity($positionData['city']);
-
-				$this->getDoctrine()
-					 ->getManager()
-					 ->persist($position);
-			}
-			else
-			{
-				$position = $this->getDoctrine()
-					 ->getRepository('App:Position')
-					 ->initPositionFormWhoIsAPI($ip);
-
-			}
-		}
-		else
-		{
-			$position = $this->getDoctrine()
-				 ->getRepository('App:Position')
-				 ->initPositionFormWhoIsAPI($ip);
-		}
-
-		if (!is_null($position))
-		{
-			$ip->setPosition($position);
-			$this->getDoctrine()->getManager()->persist($ip);
-			$this->getDoctrine()->getManager()->flush();
-		}
 	}
 
 	/**
