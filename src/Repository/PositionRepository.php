@@ -84,6 +84,22 @@ class PositionRepository extends ServiceEntityRepository
 			->getResult();
 	}
 
+	public function getAllRegionCities(string $country, string $region) {
+		$qb = $this
+			->createQueryBuilder('pos');
+		return $qb->select("pos.city")
+				  ->where('pos.region = :region')
+				  ->andWhere('pos.country = :country')
+				  ->addOrderBy("pos.city", 'ASC')
+				  ->addGroupBy("pos.city")
+				  ->setParameters(array(
+				  	'country' => $country,
+					'region' => $region
+								  ))
+				  ->getQuery()
+				  ->getResult();
+	}
+
 	/**
 	 * @param $content
 	 *
