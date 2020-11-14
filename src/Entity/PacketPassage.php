@@ -18,7 +18,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "controller"=App\Controller\CreatePacketPassage::class,
  *              "defaults"={"_api_receive"=false}
  *      },
- *     	"get",
+ *     "get"={
+ *              "controller"=App\Controller\GetPacketPassages::class,
+ *      }
  *	   }
  * )
  * @ORM\Entity(repositoryClass=PacketPassageRepository::class)
