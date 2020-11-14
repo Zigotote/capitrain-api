@@ -27,11 +27,11 @@ use Symfony\Component\HttpFoundation\Response;
  *					F => {id: "F", label: "F", weight:3},
  * 				  ],
  * 				  edges: [
- *					"D__TO__E" => {from: "D", to: "E", weight:2},
- * 					"E__TO__D" => {from: "E", to: "D", weight:1},
- * 					"E__TO__F" => {from: "E", to: "F", weight:1},
- *					"F__TO__D" => {from: "F", to: "D", weight:1},
- * 					"F__TO__E" => {from: "F", to: "E", weight:1},
+ *					"D__TO__E" => {from: "D", to: "E", weight:2, isp: "Orange SA"},
+ * 					"E__TO__D" => {from: "E", to: "D", weight:1, isp: "Orange SA"},
+ * 					"E__TO__F" => {from: "E", to: "F", weight:1, isp: "Orange SA"},
+ *					"F__TO__D" => {from: "F", to: "D", weight:1, isp: "Free"},
+ * 					"F__TO__E" => {from: "F", to: "E", weight:1, isp: "Free"},
  * 				  ]
  * 		 }
  *
