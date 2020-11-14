@@ -33,6 +33,24 @@ class PacketPassageRepository extends ServiceEntityRepository
 			->getResult();
 	}
 
+	public function getAllCityPacketPassages(string $country, string $city) {
+		$qb = $this
+			->createQueryBuilder('pp');
+
+		// TODO: Divide method into entering pp and leaving pp
+		// TODO: Fixe problems
+		return $qb->select('previous.city')
+				  ->join('pp.ip', 'ip')
+				  ->join('ip.position', 'pos')
+				  ->where('pos.country = :country')
+				  ->andWhere('pos.city = :city')
+				  ->orderBy('ip.ip', 'ASC')
+				  ->setParameters(array(
+				  	'country' => $country,
+					'city' => $city))
+				  ->getQuery()->getResult();
+	}
+
     // /**
     //  * @return PacketPassage[] Returns an array of PacketPassage objects
     //  */

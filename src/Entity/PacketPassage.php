@@ -131,7 +131,7 @@ class PacketPassage
 			$old = $this->previous;
 			$this->previous = null;
 			if(is_null($old->getNext())) {
-				$old->setNext(null);
+				$old->setNext($previous);
 			}
 		}
 		$this->previous = $previous;
