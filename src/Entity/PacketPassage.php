@@ -20,6 +20,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      },
  *     "get"={
  *              "controller"=App\Controller\GetPacketPassages::class,
+ *      },
+ *     "getRegion"={
+ *      		"method"="POST",
+ *     			"path"="packet_passages/region",
+ *              "controller"=App\Controller\GetRegionPacketPassages::class,
+ *              "defaults"={"_api_receive"=false}
  *      }
  *	   }
  * )
