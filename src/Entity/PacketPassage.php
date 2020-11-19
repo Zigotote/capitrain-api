@@ -145,7 +145,7 @@ class PacketPassage
     }
 
 	/**
-	 * @warning useless for nom because setNext does not work for now, there is a bug
+	 * @deprecated useless for nom because setNext does not work for now, there is a bug
 	 */
     public function getNext(): ?PacketPassage {
 		return $this->next;
@@ -174,7 +174,7 @@ class PacketPassage
 
 	/**
 	 * TODO
-	 * @warning Be carefull, this method is partially bug, $this->setNext does not work for now so next value is not updated
+	 * @deprecated Be carefull, this method is partially bug, $this->setNext does not work for now so next value is not updated
 	 */
 	public function setPrevious(?PacketPassage $previous): self {
 		if(!is_null($this->previous)) {
