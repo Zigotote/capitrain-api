@@ -75,10 +75,13 @@ class PositionRepository extends ServiceEntityRepository
 		return $this
 			->createQueryBuilder('pos')
 			->select("pos.country")
+			->addSelect("pos.region")
 			->addSelect("pos.city")
 			->orderBy("pos.country", 'ASC')
+			->addOrderBy("pos.region", 'ASC')
 			->addOrderBy("pos.city", 'ASC')
 			->groupBy("pos.country")
+			->addGroupBy("pos.region")
 			->addGroupBy("pos.city")
 			->getQuery()
 			->getResult();

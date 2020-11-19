@@ -33,6 +33,34 @@ class PacketPassageRepository extends ServiceEntityRepository
 			->getResult();
 	}
 
+	public function findAllPacketWithPreviousAndPosition() {
+		return $this
+			->createQueryBuilder('pp')
+			->join('pp.ip', 'ip')
+			->join('ip.position', 'pos')
+			->where('ip.position IS NOT NULL')
+			->andWhere('pp.previous IS NOT NULL')
+			->getQuery()
+			->getResult();
+	}
+
+	// TODO: not tested yet
+	public function findAllExchangeISPPosition() {
+		return $this
+			->createQueryBuilder('pp')
+			->select("pos.country")
+			->addSelect("pos.region")
+			->addSelect("pos.city")
+			->join('pp.ip', 'ip')
+			->join('ip.position', 'pos')
+			->where('ip.position IS NOT NULL')
+			->andWhere('ip.is_ispexchange = true')
+			->addOrderBy('pos.country', 'ASC')
+			->addOrderBy('pos.city', 'ASC')
+			->getQuery()
+			->getResult();
+	}
+
     // /**
     //  * @return PacketPassage[] Returns an array of PacketPassage objects
     //  */

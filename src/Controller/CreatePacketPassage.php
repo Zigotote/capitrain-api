@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Ip;
 use App\Entity\PacketPassage;
-use App\Entity\Position;
 use App\Entity\Traceroute;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +45,7 @@ class CreatePacketPassage extends AbstractController
 		if(array_key_exists('traceroute', $data)) {
 			$traceRouteId = $data['traceroute'];
 		}
+		$isISPExchange = false;
 
 		// Verify request validity
 		if(empty($ipValue)) {
@@ -85,9 +85,13 @@ class CreatePacketPassage extends AbstractController
 		$packetPassage->setTraceRoute($traceRoute);
 		if($indice > 0)
 		{
+			/** @var PacketPassage $previousList */
 			$previousList = $this->getPreviousPacketPassage($traceRoute, $indice);
-			$packetPassage->setPrevious(empty($previousList) ? null : $previousList[0]);
+			$previous = empty($previousList) ? null : $previousList[0];
+			$packetPassage->setPrevious($previous);
+			$isISPExchange = !is_null($previous) && $previous->getIp()->getIsp() != $ip->getIsp();
 		}
+		$packetPassage->setIsISPExchange($isISPExchange);
 
 		$this->getDoctrine()->getManager()->persist($packetPassage);
 
