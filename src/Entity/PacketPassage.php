@@ -81,6 +81,7 @@ class PacketPassage
 	/**
 	 * @ORM\OneToOne(targetEntity=PacketPassage::class, inversedBy="previous")
 	 * @ORM\JoinColumn(nullable=true)
+	 * @deprecated does not work for now, there is a bug
 	 */
 	private $next;
 
@@ -143,10 +144,17 @@ class PacketPassage
         return $this;
     }
 
+	/**
+	 * @warning useless for nom because setNext does not work for now, there is a bug
+	 */
     public function getNext(): ?PacketPassage {
 		return $this->next;
 	}
 
+	/**
+	 * TODO
+	 * @deprecated does not work for now, there is a bug
+	 */
 	public function setNext(?PacketPassage $next): self {
 		if(!is_null($this->next)) {
 			$old = $this->next;
@@ -164,6 +172,10 @@ class PacketPassage
 		return $this->previous;
 	}
 
+	/**
+	 * TODO
+	 * @warning Be carefull, this method is partially bug, $this->setNext does not work for now so next value is not updated
+	 */
 	public function setPrevious(?PacketPassage $previous): self {
 		if(!is_null($this->previous)) {
 			$old = $this->previous;
