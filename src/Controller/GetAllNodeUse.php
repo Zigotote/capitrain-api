@@ -26,7 +26,7 @@ class GetAllNodeUse extends AbstractController
 
 	/**
 	 * Return city weight in network roots
-	 * 
+	 *
 	 * @example  :
 	 *           With the next map:
 	 *           	A->B
@@ -42,7 +42,6 @@ class GetAllNodeUse extends AbstractController
 	 *           		D: 12.5%
 	 *           	}
 	 * @param Request $request
-	 * @return JsonResponse|PacketPassage
 	 *
 	 */
 	public function __invoke(Request $request)
@@ -51,22 +50,15 @@ class GetAllNodeUse extends AbstractController
 		/** @var PacketPassageRepository $packetPassageRepo */
 		$packetPassageRepo = $this->getDoctrine()->getRepository('App:PacketPassage');
 		$nbRoute = $packetPassageRepo->count([]);
-		$positions = $packetPassageRepo->findAllOrderByPosition();
+		$positions = $packetPassageRepo->findPositionReuse();
 
-		$res = [];
+		$cities = [];
 		/** @var Position $position */
 		foreach($positions as $position) {
-			$country = $position['country'];
-			$city = $position['city'];
-
-			if(!array_key_exists($country, $res)) {
-				$res[$country] = [];
-			}
-			if(!array_key_exists($city, $res[$country])) {
-				$res[$country][$city] = 0;
-			}
-			$res[$country][$city] += (1/$nbRoute);
+			$position["percentage"] = $position["nb"]/$nbRoute;
+			array_push($cities, $position);
 		}
-		return $res;
+
+		return new JsonResponse(["nbTotal" => $nbRoute, "cities" => $cities]);;
 	}
 }

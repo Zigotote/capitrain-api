@@ -23,14 +23,33 @@ class PacketPassageRepository extends ServiceEntityRepository
 		return $this
 			->createQueryBuilder('pp')
 			->select("pos.country")
+			->addSelect("pos.region")
 			->addSelect("pos.city")
 			->join('pp.ip', 'ip')
 			->join('ip.position', 'pos')
 			->where('ip.position IS NOT NULL')
 			->addOrderBy('pos.country', 'ASC')
+			->addOrderBy('pos.region', 'ASC')
 			->addOrderBy('pos.city', 'ASC')
 			->getQuery()
 			->getResult();
+	}
+
+	public function findPositionReuse() {
+		$qb = $this->createQueryBuilder('pp');
+    	return $qb->select("pos.country")
+				  ->addSelect("pos.region")
+				  ->addSelect("pos.city")
+				  ->addSelect("pos.city")
+				  ->addSelect($qb->expr()->count('pos.city').' as nb')
+				  ->join('pp.ip', 'ip')
+				  ->join('ip.position', 'pos')
+				  ->where('ip.position IS NOT NULL')
+				  ->groupBy('pos.country')
+				  ->addGroupBy('pos.region')
+				  ->addGroupBy('pos.city')
+				  ->getQuery()
+				  ->getResult();
 	}
 
 	public function findAllPacketWithPreviousAndPosition() {
