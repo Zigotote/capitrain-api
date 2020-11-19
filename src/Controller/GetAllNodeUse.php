@@ -6,8 +6,6 @@ namespace App\Controller;
 use App\Entity\PacketPassage;
 use App\Entity\Position;
 use App\Repository\PacketPassageRepository;
-use App\Repository\TracerouteRepository;
-use App\Services\GetNodeUseService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

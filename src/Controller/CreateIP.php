@@ -4,9 +4,6 @@
 namespace App\Controller;
 
 use App\Entity\Ip;
-use App\Entity\PacketPassage;
-use App\Entity\Position;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
