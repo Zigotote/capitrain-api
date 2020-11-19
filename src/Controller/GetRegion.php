@@ -12,15 +12,7 @@ class GetRegion extends AbstractController
 	}
 
 	/**
-	 * Return the list of all ip cities
-	 * @example
-	 *         Will return something like this :
-	 *         [
-	 *         		{"country": "France", "city": "Île d'Yeu"},
-	 *         		{"country": "France", "city": "Rennes"},
-	 *         		{"country": "United Kingdom", "city": "London"},
-	 *         		{"country": "United Kingdom", "city": "Manchester"}
-	 *         ]
+	 * Return the list of all ip regions
 	 *
 	 * @param Request $request
 	 *
@@ -29,7 +21,7 @@ class GetRegion extends AbstractController
 	public function __invoke(Request $request)
 	{
 		$positions = $this->getDoctrine()->getRepository('App:Position')
-									   ->getAllRegion();
+										 ->getAllRegion();
 		$res = [];
 		foreach ($positions as $position) {
 			$country = $position['country'];
