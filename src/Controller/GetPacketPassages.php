@@ -5,11 +5,6 @@ namespace App\Controller;
 
 use App\Entity\PacketPassage;
 use App\Entity\Position;
-use App\Repository\PacketPassageRepository;
-use App\Repository\TracerouteRepository;
-use App\Services\GetNodeUseService;
-use phpDocumentor\Reflection\Types\String_;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,14 +45,14 @@ class GetPacketPassages extends AbstractController
 
 	public function __invoke(Request $request)
 	{
-		$ppList = $this->getDoctrine()->getRepository('App:PacketPassage')->findAll();
+		$ppList = $this->getDoctrine()->getRepository('App:PacketPassage')
+									  ->findAllPacketWithPreviousAndPosition();
 		$this->nodes = [];
 		$this->edges = [];
 
 		/** @var PacketPassage $pp */
 		foreach ($ppList as $pp) {
-			if($this->havePosition($pp)
-			   && !is_null($pp->getPrevious())
+			if(!is_null($pp->getPrevious())
 			   && $this->havePosition($pp->getPrevious())
 			) {
 				// Upd nodes weight

@@ -26,7 +26,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     			"path"="packet_passages/region",
  *              "controller"=App\Controller\GetRegionPacketPassages::class,
  *              "defaults"={"_api_receive"=false}
- *      }
+ *      },
+ *     "getByISP"={
+ *      		"method"="GET",
+ *     			"path"="packet_passages/by_isp",
+ *              "controller"=App\Controller\GetPacketPassagesByISP::class,
+ *              "defaults"={"_api_receive"=false}
+ *      },
+ *     "getRegionByISP"={
+ *      		"method"="POST",
+ *     			"path"="packet_passages/region/by_isp",
+ *              "controller"=App\Controller\GetRegionPacketPassagesByISP::class,
+ *              "defaults"={"_api_receive"=false}
+ *      },
  *	   }
  * )
  * @ORM\Entity(repositoryClass=PacketPassageRepository::class)
@@ -46,6 +58,12 @@ class PacketPassage
 	 * @Groups({"get-traceroute"})
 	 */
     private $indice;
+
+	/**
+	 * @ORM\Column(type="boolean")
+	 * @Groups({"get-traceroute"})
+	 */
+	private $isISPExchange;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ip::class, inversedBy="packetPassages")
@@ -88,6 +106,18 @@ class PacketPassage
 
         return $this;
     }
+
+	public function getIsISPExchange(): ?bool
+	{
+		return $this->isISPExchange;
+	}
+
+	public function setIsISPExchange(bool $isISPExchange): self
+	{
+		$this->isISPExchange = $isISPExchange;
+
+		return $this;
+	}
 
     public function getIp(): ?Ip
     {
